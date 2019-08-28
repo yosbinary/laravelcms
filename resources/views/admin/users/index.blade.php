@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="mb-30"><a class="btn btn-primary" href="/admin/users/create" role="button">Create New User</a></div>
 <h1>Users</h1>
+
 <table class="table">
     <thead>
       <tr>
@@ -31,5 +33,6 @@
       
     </tbody>
   </table>
+  
     
 @endsection
