@@ -20,9 +20,9 @@ mix.js(['resources/js/app.js',
         'resources/js/libs/scripts.js',    
 
         ], 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
 
-    mix.styles([
+    .styles([
         'resources/css/libs/blog-post.css',
         'resources/css/libs/bootstrap.css',
         'resources/css/libs/bootstrap.min.css',
@@ -31,4 +31,4 @@ mix.js(['resources/js/app.js',
         'resources/css/libs/sb-admin-2.css',
         'resources/css/libs/style.css',
         
-    ], 'public/css/app.css');
+    ], 'public/css/libs.css');
