@@ -23,4 +23,8 @@ Route::get('/admin',function(){
     return view('admin.index');
 });
 
-Route::resource('/admin/users', 'AdminUsersController');
+Route::name('admin.')->group(function(){
+    // we use Route::name to add prefix admin. to the route, to prevent route conflict with the front side
+    Route::resource('/admin/users', 'AdminUsersController');
+});
+
