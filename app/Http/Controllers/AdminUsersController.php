@@ -6,6 +6,7 @@ use App\Role;
 use App\User;
 use App\Photo;
 use Illuminate\Http\Request;
+use App\Http\Requests\UsersEdit;
 use App\Http\Requests\UsersRequest;
 use App\Http\Controllers\Controller;
 
@@ -100,10 +101,28 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEdit $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        $input = $request->all();
         
+        if($file = $request->file('file')){
+            $name = time().$file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file' => $name]);
+            $input['photo_id']= $photo->id;
+        }
+        
+        //sometime user doesnt need to change their password
+        if(!empty($input['password'])){
+            $input['password'] = bcrypt($request->password);
+        }else{
+            unset($input['password']);
+        }
+            
+        $user->update($input);
+        return redirect(route('admin.users.edit', $id));
     }
 
     /**

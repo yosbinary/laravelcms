@@ -6,8 +6,11 @@
 <img src="{{$user->photo? $user->photo->file : "/images/nophoto.png"}}" alt="{{$user->name}}" style="width: 200px;max-height: 200px">
 </div>
 <div class="col-sm-9">
-    <form method="POST" action="{{route('admin.users.edit',$user->id)}}" enctype="multipart/form-data" >
+    <form method="POST" action="{{route('admin.users.update',$user->id)}}" enctype="multipart/form-data" >
         @csrf
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="id" value="{{$user->id}}">
+            <input type="hidden" name="photo_id" value="{{$user->photo_id}}">
             <div class="form-group">
                     <label for="name">Name</label>
             <input type="text" name="name" class="form-control" id="name"  placeholder="Enter Your Name" value="{{$user->name}}" >
@@ -58,15 +61,7 @@
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
 
-        @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+        
     </div>
     
 
