@@ -1,6 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
+@if (Session::has('alert_message'))
+<div class="alert alert-primary" role="alert">
+  {{session('alert_message')}}
+</div>
+   
+@endif
+
 <div class="mb-30"><a class="btn btn-primary" href="/admin/users/create" role="button">Create New User</a></div>
 <h1>Users</h1>
 

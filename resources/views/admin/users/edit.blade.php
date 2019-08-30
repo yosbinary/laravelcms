@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+@if(Session::has('alert_message'))
+    {{Session::get('alert_message')}}
+@endif
 <h1>Edit User</h1>
 <div class="col-sm-3">
 <img src="{{$user->photo? $user->photo->file : "/images/nophoto.png"}}" alt="{{$user->name}}" style="width: 200px;max-height: 200px">
@@ -60,6 +63,11 @@
             @include('includes.formerror')
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
+    <form method="POST" action="{{route('admin.users.destroy', $user->id)}}">
+        @csrf
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn btn-danger " style="margin-top:15px" type="submit" name="submit">Delete</button>
+    </form>
 
         
     </div>
