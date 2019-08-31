@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPostsController extends Controller
 {
@@ -14,8 +17,8 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
-
-        return view('admin.posts.index');
+        $posts = Post::all();
+        return view('admin.posts.index',compact('posts'));
     }
 
     /**
@@ -26,6 +29,12 @@ class AdminPostsController extends Controller
     public function create()
     {
         //
+        
+        $categories = Category::all();
+        $user = Auth::user();
+
+        //dd($categories);
+        return view('admin.posts.create',compact('categories','user'));
     }
 
     /**
@@ -37,6 +46,7 @@ class AdminPostsController extends Controller
     public function store(Request $request)
     {
         //
+        return $request->all();
     }
 
     /**
