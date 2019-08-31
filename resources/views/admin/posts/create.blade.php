@@ -33,7 +33,7 @@
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </form>
 </div>
-<div class="row">
+<div class="row" style="margin-top: 20px">
         @include('includes.formerror')
 </div>
 @endsection

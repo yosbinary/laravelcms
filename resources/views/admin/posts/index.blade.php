@@ -6,9 +6,9 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Photo</th>
             <th scope="col">User ID</th>
             <th scope="col">Category ID</th>
-            <th scope="col">Photo ID</th>
             <th scope="col">Title</th>
             <th scope="col">Body</th>
             <th scope="col">Created At</th>
@@ -19,8 +19,9 @@
             @foreach ($posts as $post)
             <tr>
             <th scope="row">{{$post->id}}</th>
+            <td><img src="{{$post->photo? $post->photo->file : 'http://placehold.it/400x400'}}" style="width:200px;max-height:200px"></td>
             <td>{{$post->user->name}}</td>
-            <td>{{$post->category_id}}</td>
+            <td>{{$post->category ? $post->category->name : 'Uncatogerized'}}</td>
             <td>{{$post->photo_id}}</td>
             <td>{{$post->title}}</td>
             <td>{{$post->body}}</td>

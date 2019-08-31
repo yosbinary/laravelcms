@@ -13,7 +13,7 @@ class PostCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class PostCreateRequest extends FormRequest
             'category_id' => 'required',
             'title' => 'required',
             'body' => 'required',
-            'photo_id' => 'required',
+            
         ];
     }
 }
