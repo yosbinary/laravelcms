@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+
+  @if(Session::has('alert_message'))
+    <div class="alert alert-success">{{Session::get('alert_message')}}</div>
+  @endif
     <h1>Posts</h1>
     <table class="table">
         <thead>
@@ -23,7 +27,7 @@
             <td>{{$post->user->name}}</td>
             <td>{{$post->category ? $post->category->name : 'Uncatogerized'}}</td>
             <td>{{$post->photo_id}}</td>
-            <td>{{$post->title}}</td>
+            <td><a href="{{route('admin.posts.edit',$post->id)}}">{{$post->title}}</a></td>
             <td>{{$post->body}}</td>
             <td>{{$post->created_at->diffForHumans()}}</td>
             <td>{{$post->updated_at->diffForHumans()}}</td>

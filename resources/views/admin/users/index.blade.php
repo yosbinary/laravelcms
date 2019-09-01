@@ -2,7 +2,7 @@
 
 @section('content')
 @if (Session::has('alert_message'))
-<div class="alert alert-primary" role="alert">
+<div class="alert alert-success" >
   {{session('alert_message')}}
 </div>
    

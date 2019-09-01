@@ -33,6 +33,7 @@ Route::group(['middleware'=>'admin'],function(){
         // we use Route::name to add prefix admin. to the route, to prevent route conflict with the front side
         Route::resource('/admin/users', 'AdminUsersController');
         Route::resource('/admin/posts','AdminPostsController');
+        Route::resource('/admin/categories','AdminCategoryController');
     });
 });
 
