@@ -18,4 +18,8 @@ class Comment extends Model
     public function posts(){
         return $this->hasMany('App\Post');
     }
+
+    public function replies(){
+        return $this->hasMany('App\CommentReply');
+    }
 }

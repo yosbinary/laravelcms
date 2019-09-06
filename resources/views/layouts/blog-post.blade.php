@@ -147,12 +147,12 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     
     <script src="{{asset('js/app.js')}}"></script>
-
+    @yield('scripts')
 </body>
 
 </html>
