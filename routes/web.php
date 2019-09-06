@@ -42,8 +42,13 @@ Route::group(['middleware'=>'admin'],function(){
         Route::resource('/admin/media','AdminMediaController');
         Route::get('admin/media/upload',['as' => 'media.upload', 'uses' => 'AdminMediaController@store']);
         Route::resource('/admin/comments', 'PostCommentController');
-       // Route::resource('/admin/comment/replies', 'CommentRepliesController');
+        Route::resource('/admin/comment/replies', 'CommentRepliesController');
     });
+});
+
+Route::group(['middleware' => 'auth'], function(){
+        Route::post('comment/reply','CommentRepliesController@createReply')->name('replies.create');
+
 });
 
 Route::get('/logout' , 'Auth\LoginController@logout');

@@ -144,6 +144,8 @@ class AdminPostsController extends Controller
     //public
     public function post($id){
         $post = Post::findOrFail($id);
-        return view('post',compact('post'));
+        $user = Auth::user();
+        $comments = $post->comments;
+        return view('post',compact('post', 'user', 'comments'));
     }
 }

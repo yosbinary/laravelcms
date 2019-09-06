@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\CommentReply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class PostCommentController extends Controller
+class CommentRepliesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,6 @@ class PostCommentController extends Controller
     public function index()
     {
         //
-        $comments = Comment::all();
-        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -31,6 +29,8 @@ class PostCommentController extends Controller
         //
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -39,21 +39,24 @@ class PostCommentController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
+        //
+       
+    }
+
+    public function createReply(Request $request){
         $user = Auth::user();
 
         $data = [
-            'post_id' => $request->post_id,
+            'comment_id' => $request->comment_id,
             'author' => $user->name,
             'email' => $user->email,
             //'photo' => $user->photo->file,
             'body' => $request->body,
 
         ];
-        Comment::create($data);
-        Session::flash('alert_message','Your Messages has been submitted and its waiting for moderation.');
+        CommentReply::create($data);
+        Session::flash('alert_message','Your reply has been submitted and its waiting for moderation.');
         return redirect()->back();
-        
     }
 
     /**
@@ -65,8 +68,6 @@ class PostCommentController extends Controller
     public function show($id)
     {
         //
-        $comments = Comment::where('post_id',$id)->get();
-        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -78,7 +79,6 @@ class PostCommentController extends Controller
     public function edit($id)
     {
         //
-        
     }
 
     /**
@@ -91,10 +91,6 @@ class PostCommentController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $comment = Comment::findOrFail($id);
-        $comment->is_active = $request->is_active;
-        $comment->update();
-        return redirect(route('admin.comments.index'));
     }
 
     /**
@@ -106,8 +102,5 @@ class PostCommentController extends Controller
     public function destroy($id)
     {
         //
-        $comment = Comment::findOrFail($id);
-        $comment->delete();
-        return redirect(route('admin.comments.index'));
     }
 }

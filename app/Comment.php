@@ -14,8 +14,8 @@ class Comment extends Model
         'email',
         'body'
 
-    ]
+    ];
     public function posts(){
-        retun $this->hasMany('App\Post');
+        return $this->hasMany('App\Post');
     }
 }
