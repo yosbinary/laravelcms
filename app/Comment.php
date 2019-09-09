@@ -15,8 +15,8 @@ class Comment extends Model
         'body'
 
     ];
-    public function posts(){
-        return $this->hasMany('App\Post');
+    public function post(){
+        return $this->belongsTo('App\Post');
     }
 
     public function replies(){
